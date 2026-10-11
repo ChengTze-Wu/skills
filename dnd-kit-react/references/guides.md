@@ -260,6 +260,8 @@ Feedback 外掛預設啟用：把被拖元素升到瀏覽器 top layer，並處�
 
 ```tsx
 useDraggable({id, plugins: [Feedback.configure({feedback: 'clone'})]});
+// useSortable 要用函式形式，否則會丟掉預設的排序外掛：
+useSortable({id, index, plugins: (defaults) => [...defaults, Feedback.configure({feedback: 'clone'})]});
 ```
 
 `feedback` 模式：

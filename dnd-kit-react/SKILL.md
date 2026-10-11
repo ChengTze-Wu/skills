@@ -163,7 +163,7 @@ const previous = useRef(items);
 </DragDropProvider>
 ```
 
-每個 `DragDropProvider` 只放**一個** `DragOverlay`。要搭配 `Feedback.configure({feedback: 'none'})` 隱藏原本元素的拖曳效果時，見 `references/guides.md`。overlay 裡面的 hook 不會生效。
+每個 `DragDropProvider` 只放**一個** `DragOverlay`。要隱藏原本元素的拖曳效果、只顯示 overlay 時，完整寫法見 `references/patterns.md` 第 1 節。overlay 裡面的 hook 不會生效。
 
 ### 拖曳把手
 
@@ -184,6 +184,7 @@ return <div ref={ref}>內容<button ref={handleRef}>⠿</button></div>;
 6. 放開後有「跳兩次」：用 `move` 處理，或 `Feedback.configure({dropAnimation: null})`。
 7. 編輯器若提示型別找不到：事件型別從 `@dnd-kit/react` 匯入（`DragEndEvent` 等）；排序型別守衛從 `@dnd-kit/react/sortable` 匯入。
 8. Next.js / RSC：用到 hook 的檔案加 `'use client'`。
+9. **`useSortable` 的 `plugins` 傳陣列會取代它的預設外掛**（`SortableKeyboardPlugin`、`OptimisticSortingPlugin`），排序會壞掉。要加 `Feedback.configure(...)` 時用 `plugins: (defaults) => [...defaults, Feedback.configure({...})]`。`useDraggable` 沒有預設外掛，傳陣列沒問題。
 
 ## 常用 API 速查
 
@@ -201,4 +202,5 @@ return <div ref={ref}>內容<button ref={handleRef}>⠿</button></div>;
 
 - `references/api.md`：hooks、元件、事件物件完整欄位
 - `references/guides.md`：sensors、modifiers、碰撞偵測、回饋、外掛、狀態管理、多列表進階
+- `references/patterns.md`：格狀 + 預覽、虛擬化長列表、樹狀巢狀、看板 + React Query 的完整配方
 - `references/migration.md`：從 `@dnd-kit/core` 遷移的對照
