@@ -1,6 +1,6 @@
 # Agent Skills
 
-A library of agent skills for Claude Code, claude.ai and other agents that support the `SKILL.md` format.
+A library of agent skills for any agent that supports the `SKILL.md` format.
 
 ## Skills
 
@@ -10,26 +10,21 @@ A library of agent skills for Claude Code, claude.ai and other agents that suppo
 
 ## Install
 
-### With the skills CLI (Claude Code, Cursor, Codex, …)
+### With the skills CLI
 
 ```bash
 npx skills add ChengTze-Wu/skills            # pick from the list
 npx skills add ChengTze-Wu/skills --skill dnd-kit-react
 ```
 
-### Manually (Claude Code)
+### Manually
 
-Copy the skill folder into your personal or project skills directory:
+Clone the repo and copy the skill folder into your agent's skills directory:
 
 ```bash
 git clone https://github.com/ChengTze-Wu/skills.git
-cp -r skills/dnd-kit-react ~/.claude/skills/        # all projects
-cp -r skills/dnd-kit-react .claude/skills/          # this project only
+cp -r skills/dnd-kit-react <your-agent-skills-dir>/
 ```
-
-### claude.ai / Claude Desktop
-
-Download the skill's zip from [Releases](../../releases) and upload it under **Settings → Capabilities → Skills**.
 
 ## Layout
 
