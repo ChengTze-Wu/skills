@@ -1,0 +1,51 @@
+{
+ "skill_name": "dnd-kit-react",
+ "evals": [
+  {
+   "id": 1,
+   "prompt": "I'm building a little task board in React + TypeScript (Vite, React 19, nothing dnd related installed yet). I need 3 columns: Todo, In Progress, Done. Cards should be draggable within a column and across columns, including into an empty column. Pressing Escape mid-drag should put everything back. Also I want to be able to reorder the columns themselves. Give me the component code in a single Board.tsx file and tell me what to npm install.",
+   "expected_output": "Board.tsx using @dnd-kit/react DragDropProvider + useSortable with group/type/accept, droppable columns with low collision priority, move helper in onDragOver, snapshot revert on cancel, sortable columns, install command.",
+   "files": [],
+   "assertions": [
+    "Uses new @dnd-kit/react (no legacy @dnd-kit/core imports)",
+    "Type-checks with tsc against real packages",
+    "Empty columns are droppable with lower collision priority than cards",
+    "Escape/cancel restores state (event.canceled + snapshot)",
+    "Columns themselves are sortable",
+    "Install instructions name the right packages"
+   ]
+  },
+  {
+   "id": 2,
+   "prompt": "We want to move off @dnd-kit/core to the new @dnd-kit/react package. Please migrate inputs/TaskList.tsx to the new API. Keep the same behavior: drag handle only, vertical axis only, a drag overlay, distance 5px for mouse and 300ms delay for touch, keyboard support. Save the migrated file as TaskList.tsx.",
+   "expected_output": "TaskList.tsx using DragDropProvider, useSortable with index + handleRef, RestrictToVerticalAxis from @dnd-kit/abstract/modifiers, DragOverlay with function child, PointerSensor with per-pointerType constraints while keeping KeyboardSensor, move helper, no legacy imports.",
+   "files": [
+    "inputs/TaskList.tsx"
+   ],
+   "assertions": [
+    "No legacy @dnd-kit/core/sortable/utilities/modifiers imports",
+    "Type-checks with tsc against real packages",
+    "useSortable receives index",
+    "Drag handle via handleRef",
+    "RestrictToVerticalAxis imported from @dnd-kit/abstract/modifiers",
+    "PointerSensor: 5px distance for mouse, 300ms delay for touch",
+    "Keyboard sensor kept (function-form sensors or explicit KeyboardSensor)",
+    "No leftover legacy patterns (listeners spread, CSS.Transform, SortableContext)"
+   ]
+  },
+  {
+   "id": 3,
+   "prompt": "幫我用 React + TS 做一個可以拖拉排序的相片牆（grid 排列），資料是用 @tanstack/react-query 從 /api/photos 抓的（回傳 {id: string, url: string}[]）。每張照片右上角有刪除按鈕，點了不要觸發拖曳；左上角放一個拖曳把手。手機上也要能拖。放開後呼叫 PATCH /api/photos/order 存新順序。我還沒裝任何拖拉套件，請給我 PhotoWall.tsx。",
+   "expected_output": "PhotoWall.tsx with @dnd-kit/react useSortable + handleRef, local state synced from query only when not dragging, move in onDragEnd, PATCH after drop, touch works (default or PointerSensor config), install instructions in Traditional Chinese.",
+   "files": [],
+   "assertions": [
+    "Uses new @dnd-kit/react",
+    "Type-checks with tsc against real packages",
+    "Drag handle wired (handleRef or setActivatorNodeRef)",
+    "Local state not overwritten by refetch during drag",
+    "PATCH /api/photos/order after drop",
+    "Reply is in Traditional Chinese"
+   ]
+  }
+ ]
+}
